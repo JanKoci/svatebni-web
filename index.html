@@ -474,6 +474,43 @@
     }
 
     /* ═══════════════════════════════
+       SCROLL ANIMATIONS
+    ═══════════════════════════════ */
+
+    /* hero: plays on page load */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .hero__heading { animation: fadeUp 0.8s cubic-bezier(0.4,0,0.2,1) both; animation-delay: 0.15s; }
+    .hero__sub     { animation: fadeUp 0.8s cubic-bezier(0.4,0,0.2,1) both; animation-delay: 0.35s; }
+    .btn           { animation: fadeUp 0.8s cubic-bezier(0.4,0,0.2,1) both; animation-delay: 0.55s; }
+    .img-tulips    { animation: fadeIn 1s ease both; animation-delay: 0.1s; }
+    .img-couple    { animation: fadeUp 1s cubic-bezier(0.4,0,0.2,1) both; animation-delay: 0.3s; }
+
+    /* scroll-triggered elements start hidden */
+    [data-animate] {
+      opacity: 0;
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1),
+                  transform 0.7s cubic-bezier(0.4,0,0.2,1);
+      will-change: opacity, transform;
+    }
+    [data-animate="up"]    { transform: translateY(40px); }
+    [data-animate="left"]  { transform: translateX(-50px); }
+    [data-animate="right"] { transform: translateX(50px); }
+    [data-animate="fade"]  { } /* opacity only */
+
+    [data-animate].is-visible {
+      opacity: 1;
+      transform: translateY(0) translateX(0);
+    }
+
+    /* ═══════════════════════════════
        RESPONSIVE
     ═══════════════════════════════ */
     @media (max-width: 700px) {
@@ -544,7 +581,7 @@
 
       <!-- Kde & Kdy blocks -->
       <div class="info__blocks">
-        <div class="info-block">
+        <div class="info-block" data-animate="up">
           <img class="info-block__icon" src="images/farm.png" alt="" />
           <h2 class="info-block__heading">Kde?</h2>
           <p class="info-block__body">
@@ -554,7 +591,7 @@
           </p>
         </div>
 
-        <div class="info-block">
+        <div class="info-block" data-animate="up" style="transition-delay:0.15s">
           <img class="info-block__icon" src="images/calendar.png" alt="" />
           <h2 class="info-block__heading">Kdy?</h2>
           <p class="info-block__body">
@@ -565,7 +602,7 @@
       </div>
 
       <!-- Photos column -->
-      <div class="info__photos" aria-hidden="true">
+      <div class="info__photos" data-animate="fade" style="transition-delay:0.25s" aria-hidden="true">
         <div class="polaroid polaroid--1">
           <img src="images/photo2.jpg" alt="" />
         </div>
@@ -576,7 +613,7 @@
 
     </div>
 
-    <p class="note-strip">
+    <p class="note-strip" data-animate="up" style="transition-delay:0.1s">
       👟&ensp;Prosíme, zvolte vhodnou obuv — obřad i hostina probíhají venku na trávě a nerovném povrchu.
     </p>
   </section>
@@ -584,8 +621,8 @@
   <!-- ── MAP ── -->
   <section class="map-section" id="mapa">
     <div class="map-section__inner">
-      <h2 class="section-heading">Jak se k nám dostat?</h2>
-      <div class="map-wrapper">
+      <h2 class="section-heading" data-animate="up">Jak se k nám dostat?</h2>
+      <div class="map-wrapper" data-animate="up" style="transition-delay:0.2s">
         <iframe
           title="Farma Babí hora"
           loading="lazy"
@@ -603,14 +640,14 @@
   <!-- ── PLAYLIST ── -->
   <section class="playlist" id="playlist">
     <div class="playlist__inner">
-      <h2 class="section-heading">Svatební playlist</h2>
-      <p class="playlist__text">
+      <h2 class="section-heading" data-animate="up">Svatební playlist</h2>
+      <p class="playlist__text" data-animate="up" style="transition-delay:0.15s">
         Co nesmí chybět ve svatebním playlistu?<br />
         Přidejte své oblíbené pecky, abychom to<br />
         mohli na parketu pořádně rozjet!
       </p>
 
-      <div class="playlist__cta">
+      <div class="playlist__cta" data-animate="up" style="transition-delay:0.3s">
         <span class="playlist__label">Klikni na mě</span>
 
         <!-- curved arrow -->
@@ -635,8 +672,8 @@
   <!-- ── GIFTS ── -->
   <section class="gifts" id="dary">
     <div class="gifts__inner">
-      <img class="gifts__img" src="images/gift.png" alt="" aria-hidden="true" />
-      <div class="gifts__text">
+      <img class="gifts__img" src="images/gift.png" alt="" aria-hidden="true" data-animate="left" />
+      <div class="gifts__text" data-animate="right">
         <h2 class="section-heading" style="text-align:left;">Svatební dary</h2>
         <p class="gifts__body">
           Nejcennějším darem pro nás bude vaše přítomnost. Pokud byste přesto chtěli přispět, budeme rádi za finanční podporu <em>(karty neberem)</em>.
@@ -647,16 +684,28 @@
 
   <!-- ── FOOTER ── -->
   <footer class="footer">
-    <p class="footer__heading">Těšíme se na vás!</p>
-    <p class="footer__sub">1. 8. 2026 &nbsp;·&nbsp; Farma Babí hora, Hluk</p>
+    <p class="footer__heading" data-animate="up">Těšíme se na vás!</p>
+    <p class="footer__sub" data-animate="up" style="transition-delay:0.15s">1. 8. 2026 &nbsp;·&nbsp; Farma Babí hora, Hluk</p>
 
     <div class="footer__photos" aria-hidden="true">
-      <img class="footer__photo--lookin"   src="images/lookin.png"   alt="" />
-      <img class="footer__photo--namela"   src="images/namela.png"   alt="" />
-      <img class="footer__photo--nio"      src="images/nio.png"      alt="" />
-      <img class="footer__photo--man-down" src="images/man-down.png" alt="" />
+      <img class="footer__photo--lookin"   src="images/lookin.png"   alt="" data-animate="up" style="transition-delay:0.05s" />
+      <img class="footer__photo--namela"   src="images/namela.png"   alt="" data-animate="up" style="transition-delay:0.18s" />
+      <img class="footer__photo--nio"      src="images/nio.png"      alt="" data-animate="up" style="transition-delay:0.31s" />
+      <img class="footer__photo--man-down" src="images/man-down.png" alt="" data-animate="up" style="transition-delay:0.44s" />
     </div>
   </footer>
 
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
