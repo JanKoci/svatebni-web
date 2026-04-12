@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Honza &amp; Žanda — 1. 8. 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Jost:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f0e8d8;
+      --cream-mid: #e8dccb;
+      --text: #222018;
+      --text-mid: #5a4e3e;
+      --text-light: #a0907e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ═══════════════════════════════
+       HERO
+    ═══════════════════════════════ */
+    .hero {
+      display: flex;
+      align-items: center;
+      min-height: 100svh;
+      overflow: hidden;
+    }
+
+    /* ── Left: photo collage ── */
+    .hero__photos {
+      position: relative;
+      flex: 0 0 48%;
+      height: 100svh;
+      min-height: 500px;
+    }
+
+    .img-tulips {
+      position: absolute;
+      left: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 76%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(4px 6px 16px rgba(0,0,0,0.18));
+    }
+
+    .img-couple {
+      position: absolute;
+      bottom: 0;
+      right: 4%;
+      height: 72%;
+      width: auto;
+      display: block;
+      z-index: 2;
+    }
+
+    /* ── Right: text ── */
+    .hero__text {
+      flex: 1;
+      padding: 3rem 5% 3rem 3%;
+    }
+
+    .hero__heading {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 700;
+      font-size: clamp(3rem, 4.8vw, 5rem);
+      line-height: 1.12;
+      color: var(--text);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero__sub {
+      font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.8;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero__sub strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 2.2rem;
+      background: var(--text);
+      color: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border: 2px solid var(--text);
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--text);
+    }
+
+    /* ═══════════════════════════════
+       INFO — KDE & KDY
+    ═══════════════════════════════ */
+    .info {
+      padding: 5rem 2rem;
+      border-top: 1px solid var(--cream-mid);
+    }
+
+    /* outer: [blocks | photos] */
+    .info__inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    /* left: two info blocks side by side */
+    .info__blocks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .info-block {
+      text-align: center;
+    }
+
+    .info-block__icon {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 0.9rem;
+    }
+
+    .info-block__heading {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 700;
+      font-size: 2.4rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .info-block__body {
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      line-height: 1.85;
+    }
+
+    .info-block__body strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* right: stacked polaroid photos */
+    .info__photos {
+      position: relative;
+      height: 380px;
+    }
+
+    .polaroid {
+      position: absolute;
+      background: #fff;
+      padding: 10px 10px 34px;
+      box-shadow: 3px 8px 20px rgba(0,0,0,0.16);
+      width: 190px;
+      line-height: 0;
+    }
+
+    .polaroid img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .polaroid--1 {
+      top: 10px;
+      right: 20px;
+      transform: rotate(4deg);
+      z-index: 2;
+    }
+
+    .polaroid--2 {
+      bottom: 10px;
+      left: 10px;
+      transform: rotate(-3deg);
+      z-index: 1;
+    }
+
+    .note-strip {
+      max-width: 1060px;
+      margin: 2.5rem auto 0;
+      background: #fff8ef;
+      border-left: 3px solid #b89868;
+      padding: 1rem 1.4rem;
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* ═══════════════════════════════
+       MAP
+    ═══════════════════════════════ */
+    .map-section {
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--cream-mid);
+    }
+
+    .map-section__inner {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 700;
+      font-size: 2.4rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .map-wrapper {
+      border: 8px solid #fff;
+      box-shadow: 3px 6px 18px rgba(0,0,0,0.1);
+      line-height: 0;
+    }
+
+    .map-wrapper iframe {
+      width: 100%;
+      height: 380px;
+      border: none;
+      display: block;
+    }
+
+    .map-link {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      text-decoration: none;
+    }
+
+    .map-link:hover { color: var(--text); }
+
+    /* ═══════════════════════════════
+       PLAYLIST
+    ═══════════════════════════════ */
+    .playlist {
+      padding: 5rem 2rem;
+      border-top: 1px solid var(--cream-mid);
+      text-align: center;
+    }
+
+    .playlist__inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .playlist__text {
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.85;
+      margin-top: 1.2rem;
+    }
+
+    .playlist__cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-top: 3rem;
+    }
+
+    .playlist__label {
+      font-family: 'Jost', sans-serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: var(--text);
+      flex-shrink: 0;
+    }
+
+    .playlist__arrow {
+      flex-shrink: 0;
+      margin: 0 4px;
+    }
+
+    .playlist__spotify {
+      display: block;
+      flex-shrink: 0;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .playlist__spotify:hover {
+      transform: scale(1.08);
+      opacity: 0.85;
+    }
+
+    .playlist__spotify img {
+      width: 90px;
+      height: 90px;
+      display: block;
+    }
+
+    /* ═══════════════════════════════
+       FOOTER
+    ═══════════════════════════════ */
+    .footer {
+      border-top: 1px solid var(--cream-mid);
+      padding: 4.5rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .footer__heading {
+      font-family: 'Dancing Script', cursive;
+      font-weight: 700;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      margin-bottom: 0.8rem;
+    }
+
+    .footer__sub {
+      font-size: 0.8rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    /* ═══════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════ */
+    @media (max-width: 700px) {
+      .hero {
+        flex-direction: column;
+        min-height: auto;
+      }
+
+      .hero__photos {
+        flex: none;
+        width: 100%;
+        height: 90vw;
+        min-height: 320px;
+      }
+
+      .img-tulips {
+        width: 68%;
+        left: 0;
+        top: 42%;
+      }
+
+      .img-couple {
+        height: 88%;
+        right: 0;
+      }
+
+      .hero__text {
+        padding: 2.5rem 1.5rem 3rem;
+        text-align: center;
+      }
+
+      .info__inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .info__photos {
+        height: 300px;
+      }
+
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+
+    <div class="hero__photos" aria-hidden="true">
+      <img class="img-tulips" src="images/tulips_stars.png" alt="" />
+      <img class="img-couple" src="images/photo.png" alt="Honza a Žanda" />
+    </div>
+
+    <div class="hero__text">
+      <h1 class="hero__heading">Honza &amp; Žanda<br />si řeknou&nbsp;"ano!"</h1>
+      <p class="hero__sub">
+        Přijďte to s námi oslavit!<br />
+        <strong>1. 8. 2026</strong> na Farmě Babí hora, Hluk
+      </p>
+      <a class="btn" href="#info">Budu tam!</a>
+    </div>
+
+  </section>
+
+  <!-- ── INFO ── -->
+  <section class="info" id="info">
+    <div class="info__inner">
+
+      <!-- Kde & Kdy blocks -->
+      <div class="info__blocks">
+        <div class="info-block">
+          <img class="info-block__icon" src="images/farm.png" alt="" />
+          <h2 class="info-block__heading">Kde?</h2>
+          <p class="info-block__body">
+            <strong>Farma Babí hora, Hluk</strong><br />
+            Obřad i hostina budou<br />na jednom místě.<br />
+            Jedná se o venkovní areál.
+          </p>
+        </div>
+
+        <div class="info-block">
+          <img class="info-block__icon" src="images/calendar.png" alt="" />
+          <h2 class="info-block__heading">Kdy?</h2>
+          <p class="info-block__body">
+            <strong>1. 8. 2026</strong><br />
+            Začátek ve <strong>12:00</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- Photos column -->
+      <div class="info__photos" aria-hidden="true">
+        <div class="polaroid polaroid--1">
+          <img src="images/photo2.jpg" alt="" />
+        </div>
+        <div class="polaroid polaroid--2">
+          <img src="images/photo3.jpg" alt="" />
+        </div>
+      </div>
+
+    </div>
+
+    <p class="note-strip">
+      👟&ensp;Prosíme, zvolte vhodnou obuv — obřad i hostina probíhají venku na trávě a nerovném povrchu.
+    </p>
+  </section>
+
+  <!-- ── MAP ── -->
+  <section class="map-section" id="mapa">
+    <div class="map-section__inner">
+      <h2 class="section-heading">Jak se k nám dostat?</h2>
+      <div class="map-wrapper">
+        <iframe
+          title="Farma Babí hora"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=48.960111,17.549917&z=15&output=embed"
+        ></iframe>
+      </div>
+      <a class="map-link" href="https://maps.google.com/maps?q=48.960111,17.549917" target="_blank" rel="noopener noreferrer">
+        Otevřít v Mapách →
+      </a>
+    </div>
+  </section>
+
+  <!-- ── PLAYLIST ── -->
+  <section class="playlist" id="playlist">
+    <div class="playlist__inner">
+      <h2 class="section-heading">Svatební playlist</h2>
+      <p class="playlist__text">
+        Co nesmí chybět ve svatebním playlistu?<br />
+        Přidejte své oblíbené pecky, abychom to<br />
+        mohli na parketu pořádně rozjet!
+      </p>
+
+      <div class="playlist__cta">
+        <span class="playlist__label">Klikni na mě</span>
+
+        <!-- curved arrow -->
+        <svg class="playlist__arrow" width="80" height="20" viewBox="0 0 80 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L8,3 Z" fill="#2b2318"/>
+            </marker>
+          </defs>
+          <line x1="0" y1="10" x2="68" y2="10"
+                stroke="#2b2318" stroke-width="2.5" stroke-linecap="round"
+                marker-end="url(#arrowhead)"/>
+        </svg>
+
+        <a class="playlist__spotify" href="https://open.spotify.com/playlist/5GsqPwtrj28Bf1QGxSn74r?pi=uh1RqpH_Scq__" target="_blank" rel="noopener noreferrer" aria-label="Otevřít svatební playlist na Spotify">
+          <img src="images/spotify.png" alt="Spotify" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <p class="footer__heading">Těšíme se na vás!</p>
+    <p class="footer__sub">1. 8. 2026 &nbsp;·&nbsp; Farma Babí hora, Hluk</p>
+  </footer>
+
+</body>
+</html>
