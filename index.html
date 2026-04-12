@@ -552,6 +552,31 @@
       }
 
     }
+
+    @media (max-width: 430px) {
+      .info__photos {
+        position: static;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+        padding: 0.5rem 0;
+      }
+
+      .polaroid {
+        position: static;
+        width: calc(50% - 0.5rem);
+        flex-shrink: 0;
+      }
+
+      .polaroid--1 { transform: rotate(4deg); }
+      .polaroid--2 { transform: rotate(-3deg); }
+
+      .polaroid img {
+        height: 120px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -565,7 +590,7 @@
     </div>
 
     <div class="hero__text">
-      <h1 class="hero__heading">Honza &amp; Žanda<br />si řeknou&nbsp;"ano!"</h1>
+      <h1 class="hero__heading">Žanda &amp; Honza<br />si řeknou&nbsp;"ano!"</h1>
       <p class="hero__sub">
         Přijďte to s námi oslavit!<br />
         <strong>1. 8. 2026</strong> na Farmě Babí hora, Hluk
