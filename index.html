@@ -323,6 +323,48 @@
     }
 
     /* ═══════════════════════════════
+       GIFTS
+    ═══════════════════════════════ */
+    .gifts {
+      padding: 5rem 2rem;
+      border-top: 1px solid var(--cream-mid);
+    }
+
+    .gifts__inner {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .gifts__img {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .gifts__body {
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.85;
+      margin-top: 0.8rem;
+    }
+
+    @media (max-width: 700px) {
+      .gifts__inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+      }
+
+      .gifts__inner .section-heading {
+        text-align: center !important;
+      }
+    }
+
+    /* ═══════════════════════════════
        FOOTER
     ═══════════════════════════════ */
     .footer {
@@ -405,7 +447,7 @@
         Přijďte to s námi oslavit!<br />
         <strong>1. 8. 2026</strong> na Farmě Babí hora, Hluk
       </p>
-      <a class="btn" href="#info">Budu tam!</a>
+      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeub8pce6TD2dfnD1gLmEordP3a0EwSkhv_UMOTS6TiKHiBQw/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer">Budu tam!</a>
     </div>
 
   </section>
@@ -431,7 +473,7 @@
           <h2 class="info-block__heading">Kdy?</h2>
           <p class="info-block__body">
             <strong>1. 8. 2026</strong><br />
-            Začátek ve <strong>12:00</strong>
+            Začátek v <strong>11:30</strong>
           </p>
         </div>
       </div>
@@ -500,6 +542,19 @@
         <a class="playlist__spotify" href="https://open.spotify.com/playlist/5GsqPwtrj28Bf1QGxSn74r?pi=uh1RqpH_Scq__" target="_blank" rel="noopener noreferrer" aria-label="Otevřít svatební playlist na Spotify">
           <img src="images/spotify.png" alt="Spotify" />
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GIFTS ── -->
+  <section class="gifts" id="dary">
+    <div class="gifts__inner">
+      <img class="gifts__img" src="images/gift.png" alt="" aria-hidden="true" />
+      <div class="gifts__text">
+        <h2 class="section-heading" style="text-align:left;">Svatební dary</h2>
+        <p class="gifts__body">
+          Nejcennějším darem pro nás bude vaše přítomnost. Pokud byste přesto chtěli přispět, budeme rádi za finanční podporu <em>(karty neberem)</em>.
+        </p>
       </div>
     </div>
   </section>
