@@ -369,7 +369,14 @@
     ═══════════════════════════════ */
     .footer {
       border-top: 1px solid var(--cream-mid);
-      padding: 4.5rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem 0;
       text-align: center;
     }
 
@@ -377,7 +384,9 @@
       font-family: 'Dancing Script', cursive;
       font-weight: 700;
       font-size: clamp(2.4rem, 4vw, 3.6rem);
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.6rem;
+      position: relative;
+      z-index: 2;
     }
 
     .footer__sub {
@@ -385,6 +394,83 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--text-light);
+      position: relative;
+      z-index: 2;
+      margin-bottom: 1rem;
+    }
+
+    .footer__photos {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .footer__photos img {
+      position: absolute;
+      bottom: 0;
+      object-fit: contain;
+    }
+
+    .footer__photo--lookin {
+      left: -1%;
+      height: 88%;
+    }
+
+    .footer__photo--namela {
+      left: 22%;
+      height: 62%;
+      transform: rotate(-6deg);
+      transform-origin: bottom center;
+    }
+
+    .footer__photo--nio {
+      right: 18%;
+      height: 80%;
+      transform: rotate(4deg);
+      transform-origin: bottom center;
+    }
+
+    .footer__photo--man-down {
+      right: -1%;
+      height: 70%;
+      transform: rotate(-10deg);
+      transform-origin: bottom right;
+    }
+
+    @media (max-width: 700px) {
+      .footer {
+        min-height: auto;
+        padding: 0 0 2.5rem;
+        justify-content: flex-start;
+      }
+
+      .footer__heading { order: 1; padding-top: 2rem; }
+
+      .footer__photos {
+        position: static;
+        order: 2;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-evenly;
+        width: 100%;
+        margin-bottom: 1.8rem;
+      }
+
+      .footer__sub { order: 3; }
+
+      .footer__photos img {
+        position: static;
+        height: 30vw;
+        width: auto;
+        transform: none;
+      }
+
+      /* keep the falling guy's tilt for fun */
+      .footer__photo--man-down {
+        transform: rotate(-10deg);
+        transform-origin: bottom center;
+      }
     }
 
     /* ═══════════════════════════════
@@ -563,6 +649,13 @@
   <footer class="footer">
     <p class="footer__heading">Těšíme se na vás!</p>
     <p class="footer__sub">1. 8. 2026 &nbsp;·&nbsp; Farma Babí hora, Hluk</p>
+
+    <div class="footer__photos" aria-hidden="true">
+      <img class="footer__photo--lookin"   src="images/lookin.png"   alt="" />
+      <img class="footer__photo--namela"   src="images/namela.png"   alt="" />
+      <img class="footer__photo--nio"      src="images/nio.png"      alt="" />
+      <img class="footer__photo--man-down" src="images/man-down.png" alt="" />
+    </div>
   </footer>
 
 </body>
